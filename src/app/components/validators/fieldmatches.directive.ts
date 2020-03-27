@@ -11,11 +11,13 @@ export class FieldmatchesDirective implements Validator, OnDestroy {
 
   @Input('fieldmatches') NgModel;
 
-  constructor() { }
+  constructor() {
+
+    console.log('Run Directives');
+  }
 
   public validate(f: AbstractControl): ValidationErrors | null {
-    console.log('fieldmatches: ', f);
-    return null
+    return null;
   }
 
   public registerOnValidatorChange(fn: () => void): void {
