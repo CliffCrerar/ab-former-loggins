@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { SignUpForm } from '../../../models/signup-form/signup-form.model';
 import { NgForm } from '@angular/forms';
+import { format } from 'url';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -28,7 +29,21 @@ export class SignupFormComponent implements OnInit {
 
   validate = (inputBlurred) => this[inputBlurred];
 
+  username() {
+    console.log('format: ', this.Form);
+  }
 
+  email() {
+    console.log('format: ', this.Form);
+  }
+
+  password() {
+    console.log('format: ', this.Form);
+  }
+
+  passwordMatch() {
+    console.log('format: ', this.Form);
+  }
 
   onSubmit(formObject: NgForm, ev: Event) {
     console.log('ev: ', ev);
