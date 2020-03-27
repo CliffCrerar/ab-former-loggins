@@ -1,22 +1,42 @@
-<form>
+<form
+    #zerosForm
+    (onSubmit)="onSubmit()"
+>
     <div class="form-group">
         <label>Username</label>
         <input
+            class="form-control"
             type="text"
             name="username"
-            class="form-control"
+            required
+            [(ngModel)]="model.username"
+            #username="ngModel"
         >
-        <div class="form-error form-username-error">This username is not available</div>
+        <div
+            *ngIf="username.invalid && username.touched"
+            class="form-error form-username-error"
+        >
+            {{model.errorOne}}
+        </div>
     </div>
 
     <div class="form-group">
         <label>Email</label>
         <input
+            class="form-control"
             type="email"
             name="email"
-            class="form-control"
+            required
+            [(ngModel)]="model.email"
+            [email]="true"
+            #email="ngModel"
         >
-        <div class="form-error form-email-error">This is not correct email</div>
+        <div
+            *ngIf="email.invalid && email.touched"
+            class="form-error form-email-error"
+        >
+            {{model.errorTwo}}
+        </div>
     </div>
 
     <div class="form-group">
@@ -26,9 +46,7 @@
             name="password"
             class="form-control"
         >
-        <div class="form-error form-password-error">
-            Password should have at least 8 characters including one uppercase, one lowercase and one number
-        </div>
+        <div class="form-error form-password-error">{{model.errorThree}}</div>
     </div>
 
     <div class="form-group">
@@ -38,7 +56,7 @@
             name="password_match"
             class="form-control"
         >
-        <div class="form-error form-password_match-error">Passwords should match</div>
+        <div class="form-error form-password_match-error">{{model.errorThree}}</div>
     </div>
 
     <div class="form-group">

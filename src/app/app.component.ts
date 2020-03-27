@@ -7,11 +7,13 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   pageTitle: string;
 
   constructor(private ts: Title) {
+
     this.pageTitle = 'AP Former Loggins';
-    ts.setTitle(this.pageTitle);
+    this.ts.setTitle(this.pageTitle);
 
   }
 
