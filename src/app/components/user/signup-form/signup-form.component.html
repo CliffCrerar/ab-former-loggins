@@ -1,70 +1,99 @@
 <form
-    #zerosForm
-    (onSubmit)="onSubmit()"
+  #zerosForm=ngForm
+  (onSubmit)="onSubmit()"
 >
-    <div class="form-group">
-        <label>Username</label>
-        <input
-            class="form-control"
-            type="text"
-            name="username"
-            required
-            [(ngModel)]="model.username"
-            #username="ngModel"
-        >
-        <div
-            *ngIf="username.invalid && username.touched"
-            class="form-error form-username-error"
-        >
-            {{model.errorOne}}
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label>Email</label>
-        <input
-            class="form-control"
-            type="email"
-            name="email"
-            required
-            [(ngModel)]="model.email"
-            [email]="true"
-            #email="ngModel"
-        >
-        <div
-            *ngIf="email.invalid && email.touched"
-            class="form-error form-email-error"
-        >
-            {{model.errorTwo}}
-        </div>
+  <!-- User Name -->
+  <div class="form-group">
+    <label>Username</label>
+    <input
+      class="form-control"
+      type="text"
+      name="username"
+      required
+      [(ngModel)]="model.username"
+      (blur)="validate('username',username)"
+      #username="ngModel"
+    >
+    <div
+      *ngIf="username.invalid && username.touched"
+      class="form-error form-username-error"
+    >
+      {{model.errorOne}}
     </div>
+  </div>
 
-    <div class="form-group">
-        <label>Password</label>
-        <input
-            type="password"
-            name="password"
-            class="form-control"
-        >
-        <div class="form-error form-password-error">{{model.errorThree}}</div>
+  <!-- Email -->
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      class="form-control"
+      type="email"
+      name="email"
+      required
+      [(ngModel)]="model.email"
+      (blur)="validate('email',email)"
+      [email]="true"
+      #email="ngModel"
+    >
+    <div
+      *ngIf="email.invalid && email.touched"
+      class="form-error form-email-error"
+    >
+      {{model.errorTwo}}
     </div>
+  </div>
 
-    <div class="form-group">
-        <label>Repeat Password</label>
-        <input
-            type="password"
-            name="password_match"
-            class="form-control"
-        >
-        <div class="form-error form-password_match-error">{{model.errorThree}}</div>
+  <!-- Password -->
+  <div class="form-group">
+    <label>Password</label>
+    <input
+      class="form-control"
+      ngModel
+      type="password"
+      name="password"
+      required
+      [pattern]="model.passwordSecCrit"
+      [(ngModel)]="model.password"
+      #password="ngModel"
+      (blur)="validate('password',password)"
+    >
+    <div
+      *ngIf="password.invalid && password.touched"
+      class="form-error form-password-error"
+    >
+      {{model.errorThree}}
     </div>
+  </div>
 
-    <div class="form-group">
-        <input
-            type="submit"
-            class="btn btn-default btn-block"
-            value="Signup"
-        >
+  <!-- Confirm Password -->
+  <div class="form-group">
+    <label>Repeat Password</label>
+    <input
+      class="form-control"
+      type="password"
+      name="password_match"
+      required
+      validate
+      [(ngModel)]="model.controlPassword"
+      #password_match="ngModel"
+      (blur)="validate('passwordMatch',password_match)"
+    >
+    <div
+      *ngIf="model.passwordMatchInvalid"
+      class="form-error form-password_match-error"
+    >
+      {{model.errorThree}}
     </div>
+  </div>
+
+  <!-- Submit Controls -->
+  <div class="form-group">
+    <input
+      type="submit"
+      class="btn btn-default btn-block"
+      value="Signup"
+    >
+  </div>
 
 </form>
