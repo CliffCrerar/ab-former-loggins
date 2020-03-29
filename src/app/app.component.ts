@@ -10,12 +10,14 @@ import { EventEmitter } from 'events';
 export class AppComponent implements OnInit {
 
   pageTitle: string;
+  subTitle: string;
   @Input() save = new EventEmitter();
 
 
   constructor(private ts: Title) {
 
-    this.pageTitle = 'AP Former Loggins';
+    this.pageTitle = 'Template Driven Forms';
+    this.subTitle = 'Validation Demo';
     this.ts.setTitle(this.pageTitle);
 
   }

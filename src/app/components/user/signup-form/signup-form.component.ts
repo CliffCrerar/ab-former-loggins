@@ -37,16 +37,16 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     const { statusChanges, valueChanges } = this.Form;
 
     this._valueChangeSubscription = statusChanges.subscribe(statusChange => {
-      console.log('statusChange: ', statusChange);
+      // console.log('statusChange: ', statusChange);
 
-      // if (statusChange === 'VALID') { this.save.emit('save'); }
+      if (statusChange === 'VALID') { this.save.emit('save'); }
 
     });
 
     this._valueStatusSubscription = valueChanges.subscribe(
 
       (valueChange: any) => {
-        console.log('valueChange: ', valueChange);
+        // console.log('valueChange: ', valueChange);
 
         Object.keys(valueChange).forEach(key => {
 
@@ -69,8 +69,9 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     this._valueStatusSubscription.unsubscribe();
 
   }
-  /* EVENTS */
+  /* METHODS */
 
+  // Validation methods
   validate = (inputName: string, inputVal: FormControl): void => this[inputName](inputVal);
 
   username = ({ invalid, touched }: FormControl): boolean =>
@@ -82,9 +83,10 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   password = ({ invalid, touched }: FormControl): boolean =>
     touched && (this.model.passwordInvalid = invalid)
 
-  password_match = ({ invalid, touched }: FormControl): boolean =>
-    this.model.passwordMatchInvalid = (this.model.password === this.model.controlPassword)
+  password_match = ({ value }: FormControl): boolean =>
+    this.model.passwordMatchInvalid = (value !== null && this.model.password === this.model.controlPassword)
 
+  /* EVENTS */
   onSubmit() {
     // this.save.emit('save');
   }

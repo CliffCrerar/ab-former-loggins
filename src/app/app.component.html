@@ -1,19 +1,31 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1>
-        {{pageTitle}}!
-      </h1>
+    <div class="col" style="text-align: center;">
+      <h1 style="padding: 20px 0;">{{pageTitle}}</h1>
+      <small>{{subTitle}}</small>
     </div>
   </div>
   <div class="row">
     <div class="col">
       <div class="card col-5 mx-auto">
+
         <div class="card-body">
+
           <h3 class="card-title">Signup</h3>
+
           <signup-form (save)="submit($event)"></signup-form>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="ng-img">
+  <a
+    href="https://angular.io/"
+    target="_blank">
+    <img
+      src="../assets/logo-nav@2x.png"
+      alt="angular logo and text">
+  </a>
 </div>

@@ -29,6 +29,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
 
-    expect(app.ts.getTitle() === 'AP Former Loggins').toBeTruthy();
+    expect(app.ts.getTitle() === 'Template Driven Forms').toBeTruthy();
   });
 });
