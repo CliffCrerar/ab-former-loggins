@@ -20,5 +20,6 @@ jobs:
             with:
                 source_branch: 'dev' # If blank, default: triggered branch
                 destination_branch: 'master'
+                pr_label: automerge
                 github_token: ${{ secrets.GITHUB_TOKEN }}
 
