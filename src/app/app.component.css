@@ -1,15 +1,23 @@
-.ng-img{
+.ng-badge{
   position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 10px 20px;
-  margin: 10px 20px;
-  background: #2572C7;
-  border-radius: 7px;
+  bottom: 10px;
+  right: 20px;
+
 }
+
+.ng-badge small{
+
+}
+  .ng-img{
+    padding: 10px 20px;
+    background: #2572C7;
+    border-radius: 7px;
+  }
+
 
 .ng-img img{
   display: block;
   height: 50px;
   width: auto;
+
 }
