@@ -38,7 +38,18 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: /usr/bin/git add --all; /usr/bin/git commit -m 'auto-merge-build'; /usr/bin/git push;
       env:
         CI: true
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.4.2
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          ACCESS_TOKEN: ${{ secrets.DEPLOY_ACCESS }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
