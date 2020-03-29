@@ -13,13 +13,13 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@dev
-      - name: merge-build-publish
-        uses: devmasx/merge-branch@v1.1.0
-        with:
-          target_branch: 'test/merge-and-build-test'
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - uses: actions/checkout@v1
+    - name: merge-build-publish
+      uses: devmasx/merge-branch@v1.1.0
+      with:
+        target_branch: 'test/merge-and-build-test'
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   build:
 
@@ -38,5 +38,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
+    - run: /usr/bin/git add --all; /usr/bin/git commit -m 'auto-merge-build'; /usr/bin/git push;
       env:
         CI: true
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
