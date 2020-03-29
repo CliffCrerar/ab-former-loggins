@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --aot=true --buildOptimizer=true --extractCss=true",
+    "build": "ng build --aot=true --buildOptimizer=true --extractCss=true --outputPath=docs",
     "test": "ng test",
     "test:watch": "ng test --watch",
     "lint": "ng lint"

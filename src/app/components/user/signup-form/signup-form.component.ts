@@ -39,7 +39,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
     this._valueChangeSubscription = statusChanges.subscribe(statusChange => {
       // console.log('statusChange: ', statusChange);
 
-      if (statusChange === 'VALID') { this.save.emit('save'); }
+      // if (statusChange === 'VALID') { this.save.emit('save'); }
 
     });
 
