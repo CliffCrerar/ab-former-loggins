@@ -6,6 +6,19 @@ name: Merge Dev
 on:
   push:
     branches: [ dev ]
+  check_suite:
+    types:
+      - completed
+  pull_request:
+    types:
+      - edited
+      - labeled
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+      - unlabeled
+      - unlocked
 
 jobs:
 
