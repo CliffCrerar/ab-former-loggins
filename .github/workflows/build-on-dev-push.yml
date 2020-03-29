@@ -43,16 +43,11 @@ jobs:
         CI: true
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
     - name: create artifact
       with:
         name: deployment-pack
         path: docs
-
-      env:
-        CI: true
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
 
   deploy:
     runs-on: ubuntu-latest
