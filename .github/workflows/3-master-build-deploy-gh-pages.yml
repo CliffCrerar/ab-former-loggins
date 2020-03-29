@@ -4,8 +4,9 @@
 name: Node CI and deploy
 
 on:
-  push:
-    branches: [master]
+  pull_request:
+    types:
+      - closed
 
 jobs:
 
