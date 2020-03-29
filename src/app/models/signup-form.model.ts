@@ -50,13 +50,13 @@ export class SignUpForm extends ErrorDescriptions {
 
     super();
 
-    this._passwordMatchInvalid = false;
+    this.passwordMatchInvalid = true;
 
-    this._userNameInvalid = false;
+    this.userNameInvalid = true;
 
-    this._passwordInvalid = false;
+    this.passwordInvalid = true;
 
-    this._emailInvalid = false;
+    this.emailInvalid = true;
 
   }
 
@@ -74,6 +74,6 @@ export class SignUpForm extends ErrorDescriptions {
 
   get emailInvalid(): boolean { return this._emailInvalid; }
 
-  set emailInvalid(setter: boolean) { this._passwordInvalid = setter; }
+  set emailInvalid(setter: boolean) { this._emailInvalid = setter; }
 
 }

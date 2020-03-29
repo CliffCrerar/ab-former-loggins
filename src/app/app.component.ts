@@ -20,4 +20,8 @@ export class AppComponent {
   ngOnInit() {
 
   }
+
+  submit(ev:string){
+    console.log('SAVE EVENT: App Component');
+  }
 }

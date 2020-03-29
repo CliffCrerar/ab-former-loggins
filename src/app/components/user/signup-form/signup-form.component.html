@@ -12,11 +12,10 @@
       name="username"
       required
       [(ngModel)]="model.username"
-      (blur)="validate('username',username)"
       #username="ngModel"
     >
     <div
-      *ngIf="username.invalid && username.touched"
+      *ngIf="model.userNameInvalid"
       class="form-error form-username-error"
     >
       {{model.errorOne}}
@@ -32,12 +31,12 @@
       name="email"
       required
       [(ngModel)]="model.email"
-      (blur)="validate('email',email)"
       [email]="true"
-      #email="ngModel"
+      [value]="ngModel"
+      autocomplete="off"
     >
     <div
-      *ngIf="email.invalid && email.touched"
+      *ngIf="model.emailInvalid"
       class="form-error form-email-error"
     >
       {{model.errorTwo}}
@@ -49,17 +48,16 @@
     <label>Password</label>
     <input
       class="form-control"
-      ngModel
+      minlength="8"
       type="password"
       name="password"
       required
       [pattern]="model.passwordSecCrit"
       [(ngModel)]="model.password"
       #password="ngModel"
-      (blur)="validate('password',password)"
     >
     <div
-      *ngIf="password.invalid && password.touched"
+      *ngIf="model.passwordInvalid"
       class="form-error form-password-error"
     >
       {{model.errorThree}}
@@ -70,20 +68,21 @@
   <div class="form-group">
     <label>Repeat Password</label>
     <input
+      minlength="8"
       class="form-control"
       type="password"
       name="password_match"
       required
-      validate
+      [pattern]="model.passwordSecCrit"
       [(ngModel)]="model.controlPassword"
       #password_match="ngModel"
-      (blur)="validate('passwordMatch',password_match)"
+      [value]="model.controlPassword"
     >
     <div
-      *ngIf="model.passwordMatchInvalid"
+      *ngIf="password_match"
       class="form-error form-password_match-error"
     >
-      {{model.errorThree}}
+      {{model.errorFour}}
     </div>
   </div>
 
