@@ -50,13 +50,13 @@ export class SignUpForm extends ErrorDescriptions {
 
     super();
 
-    this.passwordMatchInvalid = true;
+    this.passwordMatchInvalid = false;
 
-    this.userNameInvalid = true;
+    this.userNameInvalid = false;
 
-    this.passwordInvalid = true;
+    this.passwordInvalid = false;
 
-    this.emailInvalid = true;
+    this.emailInvalid = false;
 
   }
 

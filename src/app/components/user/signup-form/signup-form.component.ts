@@ -14,37 +14,39 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   /* ATTRIBUTES */
 
   @ViewChild('zerosForm', { static: true }) Form: NgForm;
+
   // tslint:disable-next-line: no-output-rename
-  @Output('save')saveEmitter: EventEmitter;
+  // @Output('save') save: EventEmitter = new EventEmitter();
 
   private _valueChangeSubscription: Subscription;
   private _valueStatusSubscription: Subscription;
-
   public model: SignUpForm;
 
   /* CONSTRUCTOR */
   constructor() {
-    this.saveEmitter = new EventEmitter();
-    this.model = new SignUpForm();
     this._valueChangeSubscription = new Subscription();
     this._valueStatusSubscription = new Subscription();
+    this.model = new SignUpForm();
+
   }
 
   /** LIFE HOOKS */
 
   ngOnInit(): void {
-
+    console.log('Form: ', this.Form);
     const { statusChanges, valueChanges } = this.Form;
 
     this._valueChangeSubscription = statusChanges.subscribe(statusChange => {
+      console.log('statusChange: ', statusChange);
 
-      if (statusChange === 'VALID') { this.save.emit('save'); }
+      // if (statusChange === 'VALID') { this.save.emit('save'); }
 
     });
 
     this._valueStatusSubscription = valueChanges.subscribe(
 
       (valueChange: any) => {
+        console.log('valueChange: ', valueChange);
 
         Object.keys(valueChange).forEach(key => {
 
@@ -69,21 +71,22 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   }
   /* EVENTS */
 
-  validate = (inputBlurred: string, inputVal: FormControl): void => this[inputBlurred](inputVal);
+  validate = (inputName: string, inputVal: FormControl): void => this[inputName](inputVal);
 
-  username = ({ invalid, touched }: FormControl): boolean => this.model.userNameInvalid = invalid;
+  username = ({ invalid, touched }: FormControl): boolean =>
+    touched && (this.model.userNameInvalid = invalid)
 
-  email = ({ invalid, touched }: FormControl): boolean => this.model.emailInvalid = invalid;
+  email = ({ invalid, touched }: FormControl): boolean =>
+    touched && (this.model.emailInvalid = invalid)
 
-  password = ({ invalid }: FormControl): boolean => this.model.passwordInvalid = invalid;
+  password = ({ invalid, touched }: FormControl): boolean =>
+    touched && (this.model.passwordInvalid = invalid)
 
-  password_match = ({ invalid, touched }: FormControl): boolean => this.model.passwordMatchInvalid = (this.model.password === this.model.controlPassword);
+  password_match = ({ invalid, touched }: FormControl): boolean =>
+    this.model.passwordMatchInvalid = (this.model.password === this.model.controlPassword)
 
   onSubmit() {
-    // console.log('ev: ', ev);
-    // console.log('formObject: ', formObject);
-    //m this.Form.invalid
-    this.save.emit('save');
+    // this.save.emit('save');
   }
 
 }

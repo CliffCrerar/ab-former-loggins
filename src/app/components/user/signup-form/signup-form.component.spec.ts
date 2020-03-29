@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +26,7 @@ describe('SignupFormComponent', () => {
 
   /**
    * Returns form error nativeElement for given field
-   * @param fieldName
+   * @params fieldName
    */
   function getFormError(fieldName) {
     const elem = fixture.debugElement.query(
@@ -68,7 +69,9 @@ describe('SignupFormComponent', () => {
   });
 
   it('has a form control', () => {
+    // tslint:disable-next-line: no-shadowed-variable
     const formElem = debugElement.query(By.directive(NgForm));
+    // tslint:disable-next-line: no-shadowed-variable
     const formControl = formElem && formElem.injector.get(NgForm);
     expect(formControl).toBeTruthy('form should have NgForm control');
   });
@@ -85,6 +88,7 @@ describe('SignupFormComponent', () => {
     expect(control && control.valid).toBeFalsy('Username invalid when empty');
 
     // set value
+    // tslint:disable-next-line: no-unused-expression
     control && control.setValue('value');
     // expect valid
     expect(control && control.valid).toBeTruthy('Username valid when not empty');
@@ -94,11 +98,13 @@ describe('SignupFormComponent', () => {
     // get control
     const control = getFormControl('email');
 
+    // tslint:disable-next-line: no-unused-expression
     control && control.setValue('test');
     // expect invalid
     expect(control && control.valid).toBeFalsy('Email should be invalid');
 
     // set value
+    // tslint:disable-next-line: no-unused-expression
     control && control.setValue('test@test.com');
     // expect valid
     expect(control && control.valid).toBeTruthy('Email should be valid');
@@ -150,12 +156,14 @@ describe('SignupFormComponent', () => {
 
     // expect invalid
     for (const { message, password } of invalidPasswords) {
+      // tslint:disable-next-line: no-unused-expression
       control && control.setValue(password);
       expect(control && control.valid).toBeFalsy(`Password should be invalid: ${message}`);
     }
 
     // expect valid
     for (const { message, password } of validPasswords) {
+      // tslint:disable-next-line: no-unused-expression
       control && control.setValue(password);
       expect(control && control.valid).toBeTruthy(`Password should be valid: ${message}`);
     }
@@ -166,13 +174,17 @@ describe('SignupFormComponent', () => {
     const control = getFormControl('password');
     const control_match = getFormControl('password_match');
 
+    // tslint:disable-next-line: no-unused-expression
     control && control.setValue('abc1');
+    // tslint:disable-next-line: no-unused-expression
     control_match && control_match.setValue('abc2');
     // expect invalid
     expect(control_match && control_match.valid).toBeFalsy('Match should be invalid');
 
     // set value
+    // tslint:disable-next-line: no-unused-expression
     control && control.setValue('Pa55word');
+    // tslint:disable-next-line: no-unused-expression
     control_match && control_match.setValue('Pa55word');
     // expect valid
     expect(control_match && control_match.valid).toBeTruthy('Match should be valid');
@@ -182,12 +194,14 @@ describe('SignupFormComponent', () => {
     const control = getFormControl('username');
 
     // Make Field Valid
-    // control && control.setErrors(null)
+    // tslint:disable-next-line: no-unused-expression
+    control && control.setErrors(null);
     fixture.detectChanges();
     expect(getFormError('username')).toBeFalsy('Error message should not be present');
 
     // Make field invalid
-    // control && control.setErrors({ fake_error: true })
+    // tslint:disable-next-line: no-unused-expression
+    control && control.setErrors({ fake_error: true });
     fixture.detectChanges();
     expect(getFormError('username')).toBeTruthy('Error message should be present');
   });
@@ -196,12 +210,14 @@ describe('SignupFormComponent', () => {
     const control = getFormControl('password_match');
 
     // Make Field Valid
-    // control && control.setErrors(null)
+    // tslint:disable-next-line: no-unused-expression
+    control && control.setErrors(null);
     fixture.detectChanges();
     expect(getFormError('password_match')).toBeFalsy('Error message should not be present');
 
     // Make field invalid
-    // control && control.setErrors({ fake_error: true })
+    // tslint:disable-next-line: no-unused-expression
+    control && control.setErrors({ fake_error: true });
     fixture.detectChanges();
     expect(getFormError('password_match')).toBeTruthy('Error message should be present');
   });
@@ -247,6 +263,7 @@ describe('SignupFormComponent Inputs Outputs', () => {
     const ngForm = form.injector.get(NgForm);
 
     return fixture.whenRenderingDone().then(() => {
+      // tslint:disable-next-line: forin
       for (const name in ngForm.form.controls) {
         ngForm.form.controls[name].setErrors(null);
       }

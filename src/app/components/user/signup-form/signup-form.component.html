@@ -1,7 +1,8 @@
 <form
   #zerosForm=ngForm
-  (onSubmit)="onSubmit()"
->
+  (ngSubmit)="onSubmit()"
+  #save
+  >
 
   <!-- User Name -->
   <div class="form-group">
@@ -10,14 +11,13 @@
       class="form-control"
       type="text"
       name="username"
+      autocomplete="off"
       required
       [(ngModel)]="model.username"
-      #username="ngModel"
-    >
+      #username="ngModel">
     <div
       *ngIf="model.userNameInvalid"
-      class="form-error form-username-error"
-    >
+      class="form-error form-username-error">
       {{model.errorOne}}
     </div>
   </div>
@@ -29,16 +29,15 @@
       class="form-control"
       type="email"
       name="email"
+      autocomplete="off"
       required
       [(ngModel)]="model.email"
       [email]="true"
-      [value]="ngModel"
-      autocomplete="off"
-    >
+      #email="ngModel"
+      [value]="email.value">
     <div
       *ngIf="model.emailInvalid"
-      class="form-error form-email-error"
-    >
+      class="form-error form-email-error">
       {{model.errorTwo}}
     </div>
   </div>
@@ -54,12 +53,10 @@
       required
       [pattern]="model.passwordSecCrit"
       [(ngModel)]="model.password"
-      #password="ngModel"
-    >
+      #password="ngModel">
     <div
       *ngIf="model.passwordInvalid"
-      class="form-error form-password-error"
-    >
+      class="form-error form-password-error">
       {{model.errorThree}}
     </div>
   </div>
@@ -76,12 +73,10 @@
       [pattern]="model.passwordSecCrit"
       [(ngModel)]="model.controlPassword"
       #password_match="ngModel"
-      [value]="model.controlPassword"
-    >
+      [value]="model.controlPassword">
     <div
-      *ngIf="password_match"
-      class="form-error form-password_match-error"
-    >
+      *ngIf="model.passwordMatchInvalid"
+      class="form-error form-password_match-error">
       {{model.errorFour}}
     </div>
   </div>
@@ -92,7 +87,8 @@
       type="submit"
       class="btn btn-default btn-block"
       value="Signup"
-    >
+      (submit)="onSubmit()"
+      #spy>
   </div>
 
 </form>
