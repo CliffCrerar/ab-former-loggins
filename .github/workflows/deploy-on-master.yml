@@ -5,7 +5,7 @@ name: Node CI and deploy
 
 on:
   push:
-    branches: [ merge-and-build-test ]
+    branches: [master]
 
 jobs:
 
