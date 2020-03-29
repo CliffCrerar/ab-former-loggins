@@ -53,8 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+
+    - uses: JamesIves/github-pages-deploy-action@3.4.2
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@3.4.2
       with:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         ACCESS_TOKEN: ${{ secrets.DEPLOY_ACCESS }}
